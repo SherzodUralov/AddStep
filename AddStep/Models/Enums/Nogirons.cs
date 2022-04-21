@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AddStep.Models
+namespace AddStep.Models.Enums
 {
-    public class Admin
+    public enum Nogirons
     {
+        No,
+        Yes
     }
 }

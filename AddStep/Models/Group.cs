@@ -5,13 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PARTNER.Models
+namespace AddStep.Models
 {
     public class Group
     {
         [Key]
-        [MaxLength(6)]
-        public string Code { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(40)]
         [Display(Name ="GroupName")]

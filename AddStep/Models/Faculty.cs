@@ -5,13 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PARTNER.Models
+namespace AddStep.Models
 {
     public class Faculty
     {
         [Key]
-        [MaxLength(7)]
-        public string Code { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(30)]
         [Display(Name ="FacultyName")]

@@ -5,20 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PARTNER.Models
+namespace AddStep.Models
 {
     public class District
     {
         [Key]
-        [MaxLength(4)]
-        public string Code { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(25)]
         [Display(Name ="DistrictName")]
         public string DistrictName { get; set; }
-        [ForeignKey("Region")]
-       
-
-
     }
 }

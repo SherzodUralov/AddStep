@@ -5,18 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PARTNER.Models
+namespace AddStep.Models
 {
     public class Branch
     {
         [Key]
-        [MaxLength(7)]
-        public string Code { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(40)]
         [Display(Name ="BranchName")]
         public string BranchName { get; set; }
-        [ForeignKey("Faculty")]
         
     }
 }
