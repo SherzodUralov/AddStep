@@ -15,7 +15,9 @@ namespace AddStep.Models
         [MaxLength(30)]
         [Display(Name ="FacultyName")]
         public string FacultyName { get; set; }
-        
+        public virtual ICollection<Branch> Branches { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+
 
     }
 }

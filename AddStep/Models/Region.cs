@@ -13,6 +13,9 @@ namespace AddStep.Models
         public int  Id { get; set; }
         [MaxLength(35)]
         public string RegionName { get; set; }
+        public virtual ICollection<District> Districts { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Tyutor> Tyutors { get; set; }
 
     }
 }

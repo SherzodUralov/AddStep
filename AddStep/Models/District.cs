@@ -15,5 +15,7 @@ namespace AddStep.Models
         [MaxLength(25)]
         [Display(Name ="DistrictName")]
         public string DistrictName { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Tyutor> Tyutors { get; set; }
     }
 }

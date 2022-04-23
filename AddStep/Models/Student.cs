@@ -36,7 +36,7 @@ namespace AddStep.Models
         public LiveTypes? LiveReady { get; set; }
         public Contracts? Contract { get; set; }
         public Nogirons? Nogiron { get; set; }
-  
+
 
 
 
