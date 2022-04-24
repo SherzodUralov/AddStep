@@ -31,7 +31,6 @@ namespace AddStep.Models
         public string MobileNamber { get; set; }
         public string PhotoFilePath { get; set; }
         public Nations? Nation { get; set; }
-        public Interist? InteristId { get; set; }
         public int Cours { get; set; }
         public LiveTypes? LiveReady { get; set; }
         public Contracts? Contract { get; set; }
