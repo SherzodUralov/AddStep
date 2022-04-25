@@ -28,6 +28,8 @@ namespace AddStep.Models
         public string PhotoFilePath { get; set; }
         public string Resime { get; set; }
         public Genders? Gender { get; set; }
+        public Region Region { get; set; }
+        public District District { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
 
     }

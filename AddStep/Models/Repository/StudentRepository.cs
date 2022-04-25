@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AddStep.Models.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,14 +8,28 @@ namespace AddStep.Models.Repository
 {
     public class StudentRepository : IStudentRepository
     {
+        private readonly AppDbContext dbContext;
+
+        public StudentRepository(AppDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
         public Student Create(Student student)
         {
-            throw new NotImplementedException();
+            dbContext.Students.Add(student);
+            dbContext.SaveChanges();
+            return student;
         }
 
         public Student Delete(int id)
         {
-            throw new NotImplementedException();
+            var student = dbContext.Students.Find(id);
+            if (student != null)
+            {
+                dbContext.Students.Remove(student);
+                dbContext.SaveChanges();
+            }
+            return student;
         }
 
         public IEnumerable<Student> GetAll()
@@ -24,7 +39,7 @@ namespace AddStep.Models.Repository
 
         public Student GetById(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Students.Find(id);
         }
 
         public Student Update(Student student)

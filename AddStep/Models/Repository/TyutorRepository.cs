@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AddStep.Models.Context;
+using AddStep.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,24 +9,48 @@ namespace AddStep.Models.Repository
 {
     public class TyutorRepository : ITyutorRepository
     {
+        private readonly AppDbContext dbContext;
+
+        public TyutorRepository(AppDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
         public Tyutor Create(Tyutor tyutor)
         {
-            throw new NotImplementedException();
+            dbContext.Tyutors.Add(tyutor);
+            dbContext.SaveChanges();
+            return tyutor;
         }
 
         public Tyutor Delete(int id)
         {
-            throw new NotImplementedException();
+            var tyutor = dbContext.Tyutors.Find(id);
+            if (tyutor != null)
+            {
+                dbContext.Tyutors.Remove(tyutor);
+                dbContext.SaveChanges();
+            }
+            return tyutor;
         }
 
-        public IEnumerable<Tyutor> GetAll()
+        public IEnumerable<TyutorIndexViewModel> GetByAll()
         {
-            throw new NotImplementedException();
+            var model = dbContext.Tyutors.Select(w => new TyutorIndexViewModel
+            {
+                Name = w.FirstName,
+                LastName = w.LastName,
+                Staj = w.Staj,
+                MobileNamber = w.MobileNamber,
+                Gender = w.Gender,
+                RegionName = w.Region.RegionName,
+                DistrictName = w.District.DistrictName
+            });
+            return model;
         }
 
         public Tyutor GetById(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Tyutors.Find(id);
         }
 
         public Tyutor Update(Tyutor tyutor)

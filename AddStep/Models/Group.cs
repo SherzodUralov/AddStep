@@ -15,6 +15,7 @@ namespace AddStep.Models
         [MaxLength(40)]
         [Display(Name ="GroupName")]
         public string GroupName { get; set; }
+        public Tyutor Tyutor { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }
 

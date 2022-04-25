@@ -141,8 +141,8 @@ namespace AddStep.Migrations
                     PhotoFilePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Resime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: true),
-                    DistrictId = table.Column<int>(type: "int", nullable: true),
-                    RegionId = table.Column<int>(type: "int", nullable: true)
+                    RegionId = table.Column<int>(type: "int", nullable: true),
+                    DistrictId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -227,15 +227,15 @@ namespace AddStep.Migrations
                     LiveReady = table.Column<int>(type: "int", nullable: true),
                     Contract = table.Column<int>(type: "int", nullable: true),
                     Nogiron = table.Column<int>(type: "int", nullable: true),
-                    BranchId = table.Column<int>(type: "int", nullable: true),
-                    DistrictId = table.Column<int>(type: "int", nullable: true),
-                    FacultyId = table.Column<int>(type: "int", nullable: true),
-                    GroupId = table.Column<int>(type: "int", nullable: true),
-                    IlmiyId = table.Column<int>(type: "int", nullable: true),
-                    InteristId = table.Column<int>(type: "int", nullable: true),
-                    MusiqaId = table.Column<int>(type: "int", nullable: true),
                     RegionId = table.Column<int>(type: "int", nullable: true),
-                    SportId = table.Column<int>(type: "int", nullable: true)
+                    DistrictId = table.Column<int>(type: "int", nullable: true),
+                    GroupId = table.Column<int>(type: "int", nullable: true),
+                    InteristId = table.Column<int>(type: "int", nullable: true),
+                    SportId = table.Column<int>(type: "int", nullable: true),
+                    IlmiyId = table.Column<int>(type: "int", nullable: true),
+                    MusiqaId = table.Column<int>(type: "int", nullable: true),
+                    FacultyId = table.Column<int>(type: "int", nullable: true),
+                    BranchId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

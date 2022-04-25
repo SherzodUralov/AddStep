@@ -35,6 +35,15 @@ namespace AddStep.Models
         public LiveTypes? LiveReady { get; set; }
         public Contracts? Contract { get; set; }
         public Nogirons? Nogiron { get; set; }
+        public Region Region { get; set; }
+        public District District { get; set; }
+        public Group Group { get; set; }
+        public Interist Interist { get; set; }
+        public Sport Sport { get; set; }
+        public Ilmiy Ilmiy { get; set; }
+        public Musiqa Musiqa { get; set; }
+        public Faculty Faculty { get; set; }
+        public Branch Branch { get; set; }
 
 
 

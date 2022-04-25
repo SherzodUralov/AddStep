@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AddStep.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220424091333_InitalStep")]
+    [Migration("20220425054509_InitalStep")]
     partial class InitalStep
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -365,98 +365,132 @@ namespace AddStep.Migrations
 
             modelBuilder.Entity("AddStep.Models.Branch", b =>
                 {
-                    b.HasOne("AddStep.Models.Faculty", null)
+                    b.HasOne("AddStep.Models.Faculty", "Faculty")
                         .WithMany("Branches")
                         .HasForeignKey("FacultyId");
 
                     b.HasOne("AddStep.Models.Group", null)
                         .WithMany("Branches")
                         .HasForeignKey("GroupId");
+
+                    b.Navigation("Faculty");
                 });
 
             modelBuilder.Entity("AddStep.Models.District", b =>
                 {
-                    b.HasOne("AddStep.Models.Region", null)
+                    b.HasOne("AddStep.Models.Region", "Region")
                         .WithMany("Districts")
                         .HasForeignKey("RegionId");
+
+                    b.Navigation("Region");
                 });
 
             modelBuilder.Entity("AddStep.Models.Group", b =>
                 {
-                    b.HasOne("AddStep.Models.Tyutor", null)
+                    b.HasOne("AddStep.Models.Tyutor", "Tyutor")
                         .WithMany("Groups")
                         .HasForeignKey("TyutorId");
+
+                    b.Navigation("Tyutor");
                 });
 
             modelBuilder.Entity("AddStep.Models.Ilmiy", b =>
                 {
-                    b.HasOne("AddStep.Models.Interist", null)
+                    b.HasOne("AddStep.Models.Interist", "Interist")
                         .WithMany("Ilmiys")
                         .HasForeignKey("InteristId");
+
+                    b.Navigation("Interist");
                 });
 
             modelBuilder.Entity("AddStep.Models.Musiqa", b =>
                 {
-                    b.HasOne("AddStep.Models.Interist", null)
+                    b.HasOne("AddStep.Models.Interist", "Interist")
                         .WithMany("Musiqas")
                         .HasForeignKey("InteristId");
+
+                    b.Navigation("Interist");
                 });
 
             modelBuilder.Entity("AddStep.Models.Sport", b =>
                 {
-                    b.HasOne("AddStep.Models.Interist", null)
+                    b.HasOne("AddStep.Models.Interist", "Interist")
                         .WithMany("Sports")
                         .HasForeignKey("InteristId");
+
+                    b.Navigation("Interist");
                 });
 
             modelBuilder.Entity("AddStep.Models.Student", b =>
                 {
-                    b.HasOne("AddStep.Models.Branch", null)
+                    b.HasOne("AddStep.Models.Branch", "Branch")
                         .WithMany("Students")
                         .HasForeignKey("BranchId");
 
-                    b.HasOne("AddStep.Models.District", null)
+                    b.HasOne("AddStep.Models.District", "District")
                         .WithMany("Students")
                         .HasForeignKey("DistrictId");
 
-                    b.HasOne("AddStep.Models.Faculty", null)
+                    b.HasOne("AddStep.Models.Faculty", "Faculty")
                         .WithMany("Students")
                         .HasForeignKey("FacultyId");
 
-                    b.HasOne("AddStep.Models.Group", null)
+                    b.HasOne("AddStep.Models.Group", "Group")
                         .WithMany("Students")
                         .HasForeignKey("GroupId");
 
-                    b.HasOne("AddStep.Models.Ilmiy", null)
+                    b.HasOne("AddStep.Models.Ilmiy", "Ilmiy")
                         .WithMany("Students")
                         .HasForeignKey("IlmiyId");
 
-                    b.HasOne("AddStep.Models.Interist", null)
+                    b.HasOne("AddStep.Models.Interist", "Interist")
                         .WithMany("Students")
                         .HasForeignKey("InteristId");
 
-                    b.HasOne("AddStep.Models.Musiqa", null)
+                    b.HasOne("AddStep.Models.Musiqa", "Musiqa")
                         .WithMany("Students")
                         .HasForeignKey("MusiqaId");
 
-                    b.HasOne("AddStep.Models.Region", null)
+                    b.HasOne("AddStep.Models.Region", "Region")
                         .WithMany("Students")
                         .HasForeignKey("RegionId");
 
-                    b.HasOne("AddStep.Models.Sport", null)
+                    b.HasOne("AddStep.Models.Sport", "Sport")
                         .WithMany("Students")
                         .HasForeignKey("SportId");
+
+                    b.Navigation("Branch");
+
+                    b.Navigation("District");
+
+                    b.Navigation("Faculty");
+
+                    b.Navigation("Group");
+
+                    b.Navigation("Ilmiy");
+
+                    b.Navigation("Interist");
+
+                    b.Navigation("Musiqa");
+
+                    b.Navigation("Region");
+
+                    b.Navigation("Sport");
                 });
 
             modelBuilder.Entity("AddStep.Models.Tyutor", b =>
                 {
-                    b.HasOne("AddStep.Models.District", null)
+                    b.HasOne("AddStep.Models.District", "District")
                         .WithMany("Tyutors")
                         .HasForeignKey("DistrictId");
 
-                    b.HasOne("AddStep.Models.Region", null)
+                    b.HasOne("AddStep.Models.Region", "Region")
                         .WithMany("Tyutors")
                         .HasForeignKey("RegionId");
+
+                    b.Navigation("District");
+
+                    b.Navigation("Region");
                 });
 
             modelBuilder.Entity("AddStep.Models.Branch", b =>
