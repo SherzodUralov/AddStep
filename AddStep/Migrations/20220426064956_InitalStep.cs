@@ -53,7 +53,7 @@ namespace AddStep.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InteristId = table.Column<int>(type: "int", nullable: true)
+                    InteristId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,7 +63,7 @@ namespace AddStep.Migrations
                         column: x => x.InteristId,
                         principalTable: "Interists",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,7 +73,7 @@ namespace AddStep.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InteristId = table.Column<int>(type: "int", nullable: true)
+                    InteristId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,7 +83,7 @@ namespace AddStep.Migrations
                         column: x => x.InteristId,
                         principalTable: "Interists",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,7 +93,7 @@ namespace AddStep.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InteristId = table.Column<int>(type: "int", nullable: true)
+                    InteristId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -103,7 +103,7 @@ namespace AddStep.Migrations
                         column: x => x.InteristId,
                         principalTable: "Interists",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,7 +113,7 @@ namespace AddStep.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DistrictName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    RegionId = table.Column<int>(type: "int", nullable: true)
+                    RegionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -123,7 +123,7 @@ namespace AddStep.Migrations
                         column: x => x.RegionId,
                         principalTable: "Regions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,8 +141,8 @@ namespace AddStep.Migrations
                     PhotoFilePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Resime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: true),
-                    RegionId = table.Column<int>(type: "int", nullable: true),
-                    DistrictId = table.Column<int>(type: "int", nullable: true)
+                    RegionId = table.Column<int>(type: "int", nullable: false),
+                    DistrictId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -168,7 +168,7 @@ namespace AddStep.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GroupName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    TyutorId = table.Column<int>(type: "int", nullable: true)
+                    TyutorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -188,7 +188,7 @@ namespace AddStep.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BranchName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    FacultyId = table.Column<int>(type: "int", nullable: true),
+                    FacultyId = table.Column<int>(type: "int", nullable: false),
                     GroupId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -227,15 +227,15 @@ namespace AddStep.Migrations
                     LiveReady = table.Column<int>(type: "int", nullable: true),
                     Contract = table.Column<int>(type: "int", nullable: true),
                     Nogiron = table.Column<int>(type: "int", nullable: true),
-                    RegionId = table.Column<int>(type: "int", nullable: true),
-                    DistrictId = table.Column<int>(type: "int", nullable: true),
-                    GroupId = table.Column<int>(type: "int", nullable: true),
-                    InteristId = table.Column<int>(type: "int", nullable: true),
-                    SportId = table.Column<int>(type: "int", nullable: true),
-                    IlmiyId = table.Column<int>(type: "int", nullable: true),
-                    MusiqaId = table.Column<int>(type: "int", nullable: true),
-                    FacultyId = table.Column<int>(type: "int", nullable: true),
-                    BranchId = table.Column<int>(type: "int", nullable: true)
+                    RegionId = table.Column<int>(type: "int", nullable: false),
+                    DistrictId = table.Column<int>(type: "int", nullable: false),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    InteristId = table.Column<int>(type: "int", nullable: false),
+                    SportId = table.Column<int>(type: "int", nullable: false),
+                    IlmiyId = table.Column<int>(type: "int", nullable: false),
+                    MusiqaId = table.Column<int>(type: "int", nullable: false),
+                    FacultyId = table.Column<int>(type: "int", nullable: false),
+                    BranchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

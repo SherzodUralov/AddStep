@@ -1,0 +1,57 @@
+﻿@model TyutorCreateViewModel
+@{ 
+    ViewData["Title"] = "Create page";
+}
+<form asp-controller="Tyutor" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="col-xl-9">
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-body">
+                <div class="mb-3 col-md-9">
+                    <label asp-for="Name" class="form-label">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name" />
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="LastName" class="form-label">LastName</label>
+                    <input asp-for="LastName" class="form-control" placeholder="LastName" />
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="SureName" class="form-label">SureName</label>
+                    <input asp-for="SureName" class="form-control" placeholder="SureName" />
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="Birthday" class="form-label">Birthday</label>
+                    <input asp-for="Birthday" class="form-control" placeholder="Birthday" />
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="Internship" class="form-label">Internship</label>
+                    <input asp-for="Internship" class="form-control" placeholder="Internship" />
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="MobileNamber" class="form-label">MobileNamber</label>
+                    <input asp-for="MobileNamber" class="form-control" placeholder="MobileNamber" />
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="Name" class="form-label">Name</label>
+                    <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<AddStep.Models.Enums.Genders>()">
+                        <option value="">plase select</option>
+                    </select>
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label class="form-label">Region</label>
+                    <select asp-for="RegionId" class="form-control" asp-items="@ViewBag.region" id="regionselect">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label class="form-label">District</label>
+                    <select asp-for="DistrictId" class="form-control" asp-items="@ViewBag.dist" id="distselect">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="mb-3 col-md-9">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -16,6 +16,7 @@ namespace AddStep.Models
         [Display(Name ="BranchName")]
         public string BranchName { get; set; }
         public virtual ICollection<Student> Students { get; set; }
+        public int FacultyId { get; set; }
         public Faculty Faculty { get; set; }
 
     }

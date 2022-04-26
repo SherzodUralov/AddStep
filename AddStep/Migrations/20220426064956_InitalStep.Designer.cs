@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AddStep.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220425054509_InitalStep")]
+    [Migration("20220426064956_InitalStep")]
     partial class InitalStep
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace AddStep.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int?>("FacultyId")
+                    b.Property<int>("FacultyId")
                         .HasColumnType("int");
 
                     b.Property<int?>("GroupId")
@@ -60,7 +60,7 @@ namespace AddStep.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<int?>("RegionId")
+                    b.Property<int>("RegionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -99,7 +99,7 @@ namespace AddStep.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int?>("TyutorId")
+                    b.Property<int>("TyutorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -116,7 +116,7 @@ namespace AddStep.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("InteristId")
+                    b.Property<int>("InteristId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -151,7 +151,7 @@ namespace AddStep.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("InteristId")
+                    b.Property<int>("InteristId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -187,7 +187,7 @@ namespace AddStep.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("InteristId")
+                    b.Property<int>("InteristId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -210,7 +210,7 @@ namespace AddStep.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("BranchId")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Contract")
@@ -219,10 +219,10 @@ namespace AddStep.Migrations
                     b.Property<int>("Cours")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DistrictId")
+                    b.Property<int>("DistrictId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FacultyId")
+                    b.Property<int>("FacultyId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -233,13 +233,13 @@ namespace AddStep.Migrations
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GroupId")
+                    b.Property<int>("GroupId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IlmiyId")
+                    b.Property<int>("IlmiyId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InteristId")
+                    b.Property<int>("InteristId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -255,7 +255,7 @@ namespace AddStep.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int?>("MusiqaId")
+                    b.Property<int>("MusiqaId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Nation")
@@ -272,10 +272,10 @@ namespace AddStep.Migrations
                     b.Property<string>("PhotoFilePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RegionId")
+                    b.Property<int>("RegionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SportId")
+                    b.Property<int>("SportId")
                         .HasColumnType("int");
 
                     b.Property<string>("SureName")
@@ -316,7 +316,7 @@ namespace AddStep.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DistrictId")
+                    b.Property<int>("DistrictId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -340,7 +340,7 @@ namespace AddStep.Migrations
                     b.Property<string>("PhotoFilePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RegionId")
+                    b.Property<int>("RegionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Resime")
@@ -367,7 +367,9 @@ namespace AddStep.Migrations
                 {
                     b.HasOne("AddStep.Models.Faculty", "Faculty")
                         .WithMany("Branches")
-                        .HasForeignKey("FacultyId");
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Group", null)
                         .WithMany("Branches")
@@ -380,7 +382,9 @@ namespace AddStep.Migrations
                 {
                     b.HasOne("AddStep.Models.Region", "Region")
                         .WithMany("Districts")
-                        .HasForeignKey("RegionId");
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Region");
                 });
@@ -389,7 +393,9 @@ namespace AddStep.Migrations
                 {
                     b.HasOne("AddStep.Models.Tyutor", "Tyutor")
                         .WithMany("Groups")
-                        .HasForeignKey("TyutorId");
+                        .HasForeignKey("TyutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Tyutor");
                 });
@@ -398,7 +404,9 @@ namespace AddStep.Migrations
                 {
                     b.HasOne("AddStep.Models.Interist", "Interist")
                         .WithMany("Ilmiys")
-                        .HasForeignKey("InteristId");
+                        .HasForeignKey("InteristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Interist");
                 });
@@ -407,7 +415,9 @@ namespace AddStep.Migrations
                 {
                     b.HasOne("AddStep.Models.Interist", "Interist")
                         .WithMany("Musiqas")
-                        .HasForeignKey("InteristId");
+                        .HasForeignKey("InteristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Interist");
                 });
@@ -416,7 +426,9 @@ namespace AddStep.Migrations
                 {
                     b.HasOne("AddStep.Models.Interist", "Interist")
                         .WithMany("Sports")
-                        .HasForeignKey("InteristId");
+                        .HasForeignKey("InteristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Interist");
                 });
@@ -425,39 +437,57 @@ namespace AddStep.Migrations
                 {
                     b.HasOne("AddStep.Models.Branch", "Branch")
                         .WithMany("Students")
-                        .HasForeignKey("BranchId");
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.District", "District")
                         .WithMany("Students")
-                        .HasForeignKey("DistrictId");
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Faculty", "Faculty")
                         .WithMany("Students")
-                        .HasForeignKey("FacultyId");
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Group", "Group")
                         .WithMany("Students")
-                        .HasForeignKey("GroupId");
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Ilmiy", "Ilmiy")
                         .WithMany("Students")
-                        .HasForeignKey("IlmiyId");
+                        .HasForeignKey("IlmiyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Interist", "Interist")
                         .WithMany("Students")
-                        .HasForeignKey("InteristId");
+                        .HasForeignKey("InteristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Musiqa", "Musiqa")
                         .WithMany("Students")
-                        .HasForeignKey("MusiqaId");
+                        .HasForeignKey("MusiqaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Region", "Region")
                         .WithMany("Students")
-                        .HasForeignKey("RegionId");
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Sport", "Sport")
                         .WithMany("Students")
-                        .HasForeignKey("SportId");
+                        .HasForeignKey("SportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Branch");
 
@@ -482,11 +512,15 @@ namespace AddStep.Migrations
                 {
                     b.HasOne("AddStep.Models.District", "District")
                         .WithMany("Tyutors")
-                        .HasForeignKey("DistrictId");
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AddStep.Models.Region", "Region")
                         .WithMany("Tyutors")
-                        .HasForeignKey("RegionId");
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("District");
 

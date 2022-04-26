@@ -53,6 +53,16 @@ namespace AddStep.Models.Repository
             return dbContext.Tyutors.Find(id);
         }
 
+        public IList<District> GetDistricts()
+        {
+            return dbContext.Districts.ToList();
+        }
+
+        public IList<Region> GetRegions()
+        {
+            return dbContext.Regions.ToList();
+        }
+
         public Tyutor Update(Tyutor tyutor)
         {
             throw new NotImplementedException();

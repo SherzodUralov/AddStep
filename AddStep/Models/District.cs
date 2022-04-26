@@ -17,6 +17,7 @@ namespace AddStep.Models
         public string DistrictName { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<Tyutor> Tyutors { get; set; }
+        public int RegionId { get; set; }
         public Region Region { get; set; }
     }
 }
