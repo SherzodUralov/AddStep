@@ -26,6 +26,7 @@ namespace AddStep.Models
         [MaxLength(30)]
         public string MobileNamber { get; set; }
         public string PhotoFilePath { get; set; }
+        public string Passport { get; set; }
         public string Resime { get; set; }
         public Genders? Gender { get; set; }
         public int RegionId { get; set; }
@@ -33,6 +34,7 @@ namespace AddStep.Models
         public int DistrictId { get; set; }
         public District District { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<Rolee> Rolees { get; set; }
 
     }
 }

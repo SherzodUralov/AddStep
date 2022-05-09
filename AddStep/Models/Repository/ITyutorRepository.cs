@@ -9,11 +9,12 @@ namespace AddStep.Models.Repository
     public interface ITyutorRepository
     {
         Tyutor GetById(int id);
-        IEnumerable<TyutorIndexViewModel> GetByAll();
+        IEnumerable<TyutorIndexViewModel> GetByAll(string SearchText);
         Tyutor Create(Tyutor tyutor);
         Tyutor Update(Tyutor tyutor);
         Tyutor Delete(int id);
         IList<Region> GetRegions();
-        IList<District> GetDistricts();
+        IList<District> GetDistricts(int regionId);
+        IList<Tyutor> GetByALl();
     }
 }

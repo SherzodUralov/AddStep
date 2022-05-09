@@ -1,0 +1,279 @@
+﻿@model StudentEditViewModel
+
+@{
+    ViewData["Title"] = "Edit page";
+    var PhotoFilePath = "~/images/" + (Model.ExsitingPhotoFilePath ?? "user.png");
+}
+
+<form asp-controller="Student" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input hidden asp-for="StudentId" />
+    <input hidden asp-for="ExsitingPhotoFilePath" />
+    <div class="col-xl-12">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="FirstName" class="form-label">FirstName</label>
+                <input asp-for="FirstName" class="form-control" placeholder="FirstName" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="LastName" class="form-label">LastName</label>
+                <input asp-for="LastName" class="form-control" placeholder="LastName" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="SureName" class="form-label">SureName</label>
+                <input asp-for="SureName" class="form-control" placeholder="SureName" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="Birthday" class="form-label">Birthday</label>
+                <input asp-for="Birthday" class="form-control" placeholder="Birthday" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Passport" class="form-label">Passport</label>
+                <input asp-for="Passport" class="form-control" placeholder="Passport" />
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="Gender" class="form-label">Gender</label>
+                <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<AddStep.Models.Enums.Genders>();">
+                    <option value="">Plase select ...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="Nation" class="form-label">Nation</label>
+                <select asp-for="Nation" class="form-control" asp-items="Html.GetEnumSelectList<Nations>()">
+                    <option value="">Plase select ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="Photo" class="form-label">Photo</label>
+                <div class="custom-file">
+                    <input asp-for="Photo" class="form-control custom-file-input" id="fileupload" />
+                    <label class="custom-file-label">Choose file ...</label>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="MobileNamber" class="form-label">MobileNamber</label>
+                <input asp-for="MobileNamber" class="form-control" placeholder="MobileNamber" />
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="Cours" class="form-label">Cours</label>
+                <input asp-for="Cours" class="form-control" placeholder="exsample 1.." />
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="Contract" class="form-label">Contract</label>
+                <select asp-for="Contract" class="form-control" asp-items="Html.GetEnumSelectList<Contracts>()">
+                    <option value="">Plase select ...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="Nogiron" class="form-label">Disabled</label>
+                <select asp-for="Nogiron" class="form-control" asp-items="Html.GetEnumSelectList<AddStep.Models.Enums.Nogirons>()">
+                    <option value="">Plase select ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <img src="@PhotoFilePath"
+                     asp-append-version="true"
+                     style="width: 150px; height: 150px;"
+                     class="rounded-circle"
+                     id="preview" />
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="InteristId" class="form-label">Interist</label>
+                <select asp-for="InteristId" class="form-control" asp-items="@ViewBag.interist" id="interselect">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="InteristTypeId" class="form-label">Type of interest</label>
+                <select asp-for="InteristTypeId" class="form-control" id="intertypeselect">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="RegionId" class="form-label">Region</label>
+                <select asp-for="RegionId" class="form-control" asp-items="@ViewBag.region" id="regionselect">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="DistrictId" class="form-label">District</label>
+                <select asp-for="DistrictId" class="form-control" id="distselect">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="FacultyId" class="form-label">Faculty</label>
+                <select asp-for="FacultyId" class="form-control" asp-items="@ViewBag.faculty" id="facultyselect">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="BranchId" class="form-label">Branch</label>
+                <select asp-for="BranchId" class="form-control" id="branchselect">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="GroupId" class="form-label">Group</label>
+                <select asp-for="GroupId" class="form-control" id="groupselect">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="LiveReady">LivePlace</label>
+                <select asp-for="LiveReady" class="form-control" asp-items="Html.GetEnumSelectList<AddStep.Models.Enums.LiveTypes>()">
+                    <option value="">Plase select ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-1">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+    </div>
+</form>
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#regionselect").on('change', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetDistrict")?regionid=" + $("#regionselect option:selected").val(),
+                    success: function (response) {
+                        $('#distselect')
+                            .find('option')
+                            .remove()
+                            .end()
+                            .append('<option value=""></option>')
+                            .val('')
+                            ;
+                        $.each(response, function (key, value) {
+                            console.log(value.id + " " + value.name);
+                            $('#distselect')
+                                .append($("<option></option>")
+                                    .attr("value", value.id)
+                                    .text(value.districtName));
+                        });
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+        });
+         $(function () {
+             $("#interselect").on('change', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetInteristType")?interistid=" + $("#interselect option:selected").val(),
+                    success: function (response) {
+                        $('#intertypeselect')
+                            .find('option')
+                            .remove()
+                            .end()
+                            .append('<option value=""></option>')
+                            .val('')
+                            ;
+                        $.each(response, function (key, value) {
+                            console.log(value.id + " " + value.name);
+                            $('#intertypeselect')
+                                .append($("<option></option>")
+                                    .attr("value", value.id)
+                                    .text(value.name));
+                        });
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+         });
+         $(function () {
+             $("#facultyselect").on('change', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetBranch")?facultyid=" + $("#facultyselect option:selected").val(),
+                    success: function (response) {
+                        $('#branchselect')
+                            .find('option')
+                            .remove()
+                            .end()
+                            .append('<option value=""></option>')
+                            .val('')
+                            ;
+                        $.each(response, function (key, value) {
+                            console.log(value.id + " " + value.name);
+                            $('#branchselect')
+                                .append($("<option></option>")
+                                    .attr("value", value.id)
+                                    .text(value.branchName));
+                        });
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+         });
+         $(function () {
+             $("#branchselect").on('change', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetGroup")?branchid=" + $("#branchselect option:selected").val(),
+                    success: function (response) {
+                        $('#groupselect')
+                            .find('option')
+                            .remove()
+                            .end()
+                            .append('<option value=""></option>')
+                            .val('')
+                            ;
+                        $.each(response, function (key, value) {
+                            console.log(value.id + " " + value.name);
+                            $('#groupselect')
+                                .append($("<option></option>")
+                                    .attr("value", value.id)
+                                    .text(value.groupName));
+                        });
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var filname = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(filname);
+            });
+        });
+        $(function () {
+            $("#fileupload").change(function (event) {
+                var x = URL.createObjectURL(event.target.files[0]);
+                $("#preview").attr("src", x);
+                console.log(event);
+            });
+        })
+    </script>
+}

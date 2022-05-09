@@ -1,15 +1,14 @@
-﻿
-using AddStep.Models.Enums;
+﻿using AddStep.Models.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AddStep.Models
+namespace AddStep.ViewModel
 {
-    public class Student
+    public class StudentCreateViewModel
     {
         public int StudentId { get; set; }
         [Required]
@@ -29,29 +28,19 @@ namespace AddStep.Models
         [Required]
         [MaxLength(30)]
         public string MobileNamber { get; set; }
-        public string PhotoFilePath { get; set; }
         public Nations? Nation { get; set; }
         public int Cours { get; set; }
         public LiveTypes? LiveReady { get; set; }
         public Contracts? Contract { get; set; }
         public Nogirons? Nogiron { get; set; }
         public int RegionId { get; set; }
-        public Region Region { get; set; }
         public int DistrictId { get; set; }
-        public District District { get; set; }
         public int GroupId { get; set; }
-        public Group Group { get; set; }
         public int InteristId { get; set; }
-        public Interist Interist { get; set; }
         public int InteristTypeId { get; set; }
-        public InteristType InteristType { get; set; }
         public int FacultyId { get; set; }
-        public Faculty Faculty { get; set; }
         public int BranchId { get; set; }
-        public Branch Branch { get; set; }
-
-
-
+        public IFormFile Photo { get; set; }
 
     }
 }

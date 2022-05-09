@@ -1,0 +1,29 @@
+﻿@model RoleeEditViewModel
+
+@{
+    ViewData["Title"] = "Edit page";
+ }
+<form asp-controller="Rolee" asp-action="Edit" method="post" enctype="multipart/form-data">
+   <input hidden asp-for="Id" />
+    <div class="col-xl-9">
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-body">
+                <div class="mb-3 col-md-9">
+                    <label class="form-label">Group</label>
+                    <select asp-for="GroupId" class="form-control" asp-items="@ViewBag.group" id="groupselect">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label class="form-label">Tyutor</label>
+                    <select asp-for="TyutorId" class="form-control" asp-items="@ViewBag.tyutor" id="tyutorselect">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="mb-3 col-md-9">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,8 +1,12 @@
-﻿@model TyutorCreateViewModel
+﻿@model TyutorEditViewModel
+
 @{
-    ViewData["Title"] = "Create page";
+    ViewData["Title"] = "Edit page";
+    var photofilePath = "~/images/" + (Model.ExsistingPhotoFilePath ?? "user.png");
 }
-<form asp-controller="Tyutor" asp-action="Create" method="post" enctype="multipart/form-data">
+<form asp-controller="Tyutor" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input hidden asp-for="Id" />
+    <input hidden asp-for="ExsistingPhotoFilePath" />
     <div class="col-xl-9">
         <div class="card" style="border-radius: 15px;">
             <div class="card-body">
@@ -36,7 +40,7 @@
                     <span asp-validation-for="MobileNamber" class="text-danger"></span>
                 </div>
                 <div class="mb-3 col-md-9">
-                    <label asp-for="Passport" class="form-label">PassportSeriss</label>
+                    <label asp-for="Passport" class="form-label">Passport</label>
                     <input asp-for="Passport" class="form-control" placeholder="Passport" />
                     <span asp-validation-for="Passport" class="text-danger"></span>
                 </div>
@@ -45,13 +49,6 @@
                     <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<AddStep.Models.Enums.Genders>()">
                         <option value="">plase select</option>
                     </select>
-                </div>
-                <div class="mb-3 col-md-9">
-                    <label asp-for="Photo" class="form-label">Photo</label>
-                    <div class="custom-file">
-                        <input asp-for="Photo" class="form-control custom-file-input" id="fileupload" />
-                        <label class="custom-file-label">Choose file...</label>
-                    </div>
                 </div>
                 <div class="mb-3 col-md-9">
                     <label class="form-label">Region</label>
@@ -64,6 +61,19 @@
                     <select asp-for="DistrictId" class="form-control" id="distselect">
                         <option></option>
                     </select>
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="Photo" class="form-label">Photo</label>
+                    <div class="custom-file">
+                        <input asp-for="Photo" class="form-control custom-file-input" />
+                        <label class="custom-file-label">Clic here to change photo...</label>
+                    </div>
+                </div>
+                <div class="mb-3 col-md-9">
+                    <img src="@photofilePath"
+                         asp-append-version="true"
+                         style="width: 300px; height: 300px;"
+                         class="rounded" />
                 </div>
                 <div class="mb-3 col-md-9">
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -113,12 +123,5 @@
                 $(this).next('.custom-file-label').html(filname);
             });
         });
-        //$(function () {
-        //    $("#fileupload").change(function (event) {
-        //        var x = URL.createObjectURL(event.target.files[0]);
-        //        $("#preview").attr("src", x);
-        //        console.log(event);
-        //    });
-        //})
     </script>
 }

@@ -30,6 +30,7 @@ namespace AddStep
             services.AddDbContextPool<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("Connect")));
             services.AddScoped<ITyutorRepository, TyutorRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IRoleeRepository, RoleeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

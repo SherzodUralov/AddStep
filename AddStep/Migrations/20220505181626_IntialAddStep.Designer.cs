@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AddStep.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220426064956_InitalStep")]
-    partial class InitalStep
+    [Migration("20220505181626_IntialAddStep")]
+    partial class IntialAddStep
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,14 +36,9 @@ namespace AddStep.Migrations
                     b.Property<int>("FacultyId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("FacultyId");
-
-                    b.HasIndex("GroupId");
 
                     b.ToTable("Branches");
                 });
@@ -94,39 +89,24 @@ namespace AddStep.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
+
                     b.Property<string>("GroupName")
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int>("TyutorId")
+                    b.Property<int?>("TyutorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
 
                     b.HasIndex("TyutorId");
 
                     b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("AddStep.Models.Ilmiy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("InteristId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InteristId");
-
-                    b.ToTable("Ilmiys");
                 });
 
             modelBuilder.Entity("AddStep.Models.Interist", b =>
@@ -144,7 +124,7 @@ namespace AddStep.Migrations
                     b.ToTable("Interists");
                 });
 
-            modelBuilder.Entity("AddStep.Models.Musiqa", b =>
+            modelBuilder.Entity("AddStep.Models.InteristType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -161,7 +141,7 @@ namespace AddStep.Migrations
 
                     b.HasIndex("InteristId");
 
-                    b.ToTable("Musiqas");
+                    b.ToTable("InteristTypes");
                 });
 
             modelBuilder.Entity("AddStep.Models.Region", b =>
@@ -180,24 +160,26 @@ namespace AddStep.Migrations
                     b.ToTable("Regions");
                 });
 
-            modelBuilder.Entity("AddStep.Models.Sport", b =>
+            modelBuilder.Entity("AddStep.Models.Rolee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("InteristId")
+                    b.Property<int>("GroupId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TyutorId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InteristId");
+                    b.HasIndex("GroupId");
 
-                    b.ToTable("Sports");
+                    b.HasIndex("TyutorId");
+
+                    b.ToTable("Rolees");
                 });
 
             modelBuilder.Entity("AddStep.Models.Student", b =>
@@ -236,10 +218,10 @@ namespace AddStep.Migrations
                     b.Property<int>("GroupId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IlmiyId")
+                    b.Property<int>("InteristId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InteristId")
+                    b.Property<int>("InteristTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -254,9 +236,6 @@ namespace AddStep.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<int>("MusiqaId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("Nation")
                         .HasColumnType("int");
@@ -275,9 +254,6 @@ namespace AddStep.Migrations
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SportId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SureName")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -293,15 +269,11 @@ namespace AddStep.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("IlmiyId");
-
                     b.HasIndex("InteristId");
 
-                    b.HasIndex("MusiqaId");
+                    b.HasIndex("InteristTypeId");
 
                     b.HasIndex("RegionId");
-
-                    b.HasIndex("SportId");
 
                     b.ToTable("Students");
                 });
@@ -337,6 +309,9 @@ namespace AddStep.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("Passport")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhotoFilePath")
                         .HasColumnType("nvarchar(max)");
 
@@ -371,10 +346,6 @@ namespace AddStep.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AddStep.Models.Group", null)
-                        .WithMany("Branches")
-                        .HasForeignKey("GroupId");
-
                     b.Navigation("Faculty");
                 });
 
@@ -391,46 +362,47 @@ namespace AddStep.Migrations
 
             modelBuilder.Entity("AddStep.Models.Group", b =>
                 {
-                    b.HasOne("AddStep.Models.Tyutor", "Tyutor")
+                    b.HasOne("AddStep.Models.Branch", "Branch")
                         .WithMany("Groups")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AddStep.Models.Tyutor", null)
+                        .WithMany("Groups")
+                        .HasForeignKey("TyutorId");
+
+                    b.Navigation("Branch");
+                });
+
+            modelBuilder.Entity("AddStep.Models.InteristType", b =>
+                {
+                    b.HasOne("AddStep.Models.Interist", "Interist")
+                        .WithMany("InteristTypes")
+                        .HasForeignKey("InteristId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Interist");
+                });
+
+            modelBuilder.Entity("AddStep.Models.Rolee", b =>
+                {
+                    b.HasOne("AddStep.Models.Group", "Group")
+                        .WithMany("Rolees")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AddStep.Models.Tyutor", "Tyutor")
+                        .WithMany("Rolees")
                         .HasForeignKey("TyutorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Group");
+
                     b.Navigation("Tyutor");
-                });
-
-            modelBuilder.Entity("AddStep.Models.Ilmiy", b =>
-                {
-                    b.HasOne("AddStep.Models.Interist", "Interist")
-                        .WithMany("Ilmiys")
-                        .HasForeignKey("InteristId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Interist");
-                });
-
-            modelBuilder.Entity("AddStep.Models.Musiqa", b =>
-                {
-                    b.HasOne("AddStep.Models.Interist", "Interist")
-                        .WithMany("Musiqas")
-                        .HasForeignKey("InteristId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Interist");
-                });
-
-            modelBuilder.Entity("AddStep.Models.Sport", b =>
-                {
-                    b.HasOne("AddStep.Models.Interist", "Interist")
-                        .WithMany("Sports")
-                        .HasForeignKey("InteristId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Interist");
                 });
 
             modelBuilder.Entity("AddStep.Models.Student", b =>
@@ -459,33 +431,21 @@ namespace AddStep.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AddStep.Models.Ilmiy", "Ilmiy")
-                        .WithMany("Students")
-                        .HasForeignKey("IlmiyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AddStep.Models.Interist", "Interist")
-                        .WithMany("Students")
+                        .WithMany()
                         .HasForeignKey("InteristId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AddStep.Models.Musiqa", "Musiqa")
+                    b.HasOne("AddStep.Models.InteristType", "InteristType")
                         .WithMany("Students")
-                        .HasForeignKey("MusiqaId")
+                        .HasForeignKey("InteristTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AddStep.Models.Region", "Region")
                         .WithMany("Students")
                         .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AddStep.Models.Sport", "Sport")
-                        .WithMany("Students")
-                        .HasForeignKey("SportId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -497,15 +457,11 @@ namespace AddStep.Migrations
 
                     b.Navigation("Group");
 
-                    b.Navigation("Ilmiy");
-
                     b.Navigation("Interist");
 
-                    b.Navigation("Musiqa");
+                    b.Navigation("InteristType");
 
                     b.Navigation("Region");
-
-                    b.Navigation("Sport");
                 });
 
             modelBuilder.Entity("AddStep.Models.Tyutor", b =>
@@ -529,6 +485,8 @@ namespace AddStep.Migrations
 
             modelBuilder.Entity("AddStep.Models.Branch", b =>
                 {
+                    b.Navigation("Groups");
+
                     b.Navigation("Students");
                 });
 
@@ -548,28 +506,17 @@ namespace AddStep.Migrations
 
             modelBuilder.Entity("AddStep.Models.Group", b =>
                 {
-                    b.Navigation("Branches");
+                    b.Navigation("Rolees");
 
-                    b.Navigation("Students");
-                });
-
-            modelBuilder.Entity("AddStep.Models.Ilmiy", b =>
-                {
                     b.Navigation("Students");
                 });
 
             modelBuilder.Entity("AddStep.Models.Interist", b =>
                 {
-                    b.Navigation("Ilmiys");
-
-                    b.Navigation("Musiqas");
-
-                    b.Navigation("Sports");
-
-                    b.Navigation("Students");
+                    b.Navigation("InteristTypes");
                 });
 
-            modelBuilder.Entity("AddStep.Models.Musiqa", b =>
+            modelBuilder.Entity("AddStep.Models.InteristType", b =>
                 {
                     b.Navigation("Students");
                 });
@@ -583,14 +530,11 @@ namespace AddStep.Migrations
                     b.Navigation("Tyutors");
                 });
 
-            modelBuilder.Entity("AddStep.Models.Sport", b =>
-                {
-                    b.Navigation("Students");
-                });
-
             modelBuilder.Entity("AddStep.Models.Tyutor", b =>
                 {
                     b.Navigation("Groups");
+
+                    b.Navigation("Rolees");
                 });
 #pragma warning restore 612, 618
         }

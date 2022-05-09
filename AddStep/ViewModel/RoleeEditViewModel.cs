@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-public enum Nations
+
+namespace AddStep.ViewModel
 {
-		Uzbek,
-		Qozoq,
-		Tatar,
-		Rus,
-		Tojik,
-		Turk
+    public class RoleeEditViewModel : RoleeCreateViewModel
+    {
+
+    }
 }
