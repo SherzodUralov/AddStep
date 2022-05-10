@@ -11,6 +11,9 @@ namespace AddStep.Models
 {
     public class Student
     {
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudentId { get; set; }
         [Required]
         [MaxLength(30)]

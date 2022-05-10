@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AddStep.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220505181626_IntialAddStep")]
+    [Migration("20220510080143_IntialAddStep")]
     partial class IntialAddStep
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

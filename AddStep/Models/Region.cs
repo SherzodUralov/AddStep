@@ -10,6 +10,8 @@ namespace AddStep.Models
     public class Region
     {
         [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int  Id { get; set; }
         [MaxLength(35)]
         public string RegionName { get; set; }
