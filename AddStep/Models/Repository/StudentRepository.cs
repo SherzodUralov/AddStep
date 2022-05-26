@@ -33,7 +33,7 @@ namespace AddStep.Models.Repository
             return student;
         }
 
-        public IEnumerable<StudentIndexViewModel> GetAll()
+        public IEnumerable<StudentIndexViewModel> GetAll(string Searchtext)
         {
             var model = dbContext.Students.Select(w => new StudentIndexViewModel
             {
@@ -55,6 +55,10 @@ namespace AddStep.Models.Repository
                 PhotoFile = w.PhotoFilePath
 
             });
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                model = model.Where(n => n.Name.Contains(Searchtext));
+            }
             return model;
         }
 

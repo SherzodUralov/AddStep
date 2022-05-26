@@ -61,6 +61,8 @@ namespace AddStep.Controllers
                 newtyutor = repository.Create(newtyutor);
                 return RedirectToAction("Index");
             }
+            var x = repository.GetRegions();
+            ViewData["region"] = new SelectList(x, "Id", "RegionName");
             return View();
         }
 

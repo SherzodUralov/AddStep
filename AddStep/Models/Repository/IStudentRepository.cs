@@ -9,7 +9,7 @@ namespace AddStep.Models.Repository
     public interface IStudentRepository
     {
         Student GetById(int id);
-        IEnumerable<StudentIndexViewModel> GetAll();
+        IEnumerable<StudentIndexViewModel> GetAll(string Searchtext);
         Student Create(Student student);
         Student Update(Student student);
         Student Delete(int id);

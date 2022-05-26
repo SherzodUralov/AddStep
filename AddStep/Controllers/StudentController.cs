@@ -22,9 +22,9 @@ namespace AddStep.Controllers
             this.repository = repository;
             this.webHost = webHost;
         }
-        public IActionResult Index()
+        public IActionResult Index(string Searchtext)
         {
-            var model = repository.GetAll();
+            var model = repository.GetAll(Searchtext);
             return View(model);
         }
         [HttpGet]
@@ -177,6 +177,17 @@ namespace AddStep.Controllers
                 exsitingStudent.PhotoFilePath = ProcsessUploudFile(student);
             }
             repository.Update(exsitingStudent);
+            return RedirectToAction("Index");
+        }
+        public IActionResult Delete(int id) 
+        {
+            var student = repository.GetById(id);
+            if (student.PhotoFilePath != null)
+            {
+                string filepath = Path.Combine(webHost.WebRootPath, "images", student.PhotoFilePath);
+                System.IO.File.Delete(filepath);
+            }
+            repository.Delete(id);
             return RedirectToAction("Index");
         }
     }

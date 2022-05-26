@@ -23,21 +23,23 @@
                 </div>
                 <div class="mb-3 col-md-9">
                     <label asp-for="Birthday" class="form-label">Birthday</label>
-                    <input asp-for="Birthday" class="form-control" placeholder="Birthday" />
-                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                    <div class="input-group">
+                        <input asp-for="Birthday" class="form-control" id="date" placeholder="dd/mm/yy" />
+                        <span asp-validation-for="Birthday" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="mb-3 col-md-9">
                     <label asp-for="Internship" class="form-label">Internship</label>
-                    <input asp-for="Internship" class="form-control" placeholder="Internship" />
+                    <input asp-for="Internship" class="form-control" type="text" id="loop" placeholder="exsample..1" />
                 </div>
                 <div class="mb-3 col-md-9">
                     <label asp-for="MobileNamber" class="form-label">MobileNamber</label>
-                    <input asp-for="MobileNamber" class="form-control" placeholder="MobileNamber" />
+                    <input asp-for="MobileNamber" type="text" class="form-control" id="phone" placeholder="(xx)-xxx-xxxx" />
                     <span asp-validation-for="MobileNamber" class="text-danger"></span>
                 </div>
                 <div class="mb-3 col-md-9">
                     <label asp-for="Passport" class="form-label">PassportSeriss</label>
-                    <input asp-for="Passport" class="form-control" placeholder="Passport" />
+                    <input asp-for="Passport" class="form-control" id="passport" placeholder="AA-1234567" />
                     <span asp-validation-for="Passport" class="text-danger"></span>
                 </div>
                 <div class="mb-3 col-md-9">
@@ -73,8 +75,13 @@
     </div>
 </form>
 @section Scripts {
-
     <script type="text/javascript">
+        $('#loop').inputmask({
+            alias: 'numeric',
+            allowMinus: false,
+            digits: 1,
+            max: 35
+        });
         $(function () {
             $("#regionselect").on('change', function () {
                 $.ajax({
@@ -105,6 +112,15 @@
                 });
             });
         });
+        $(document).ready(function () {
+            $('#phone').inputmask('(99)-999-9999')
+        });
+        $(document).ready(function () {
+            $('#passport').inputmask({ mask:"AA-9999999"})
+        });
+        $(document).ready(function () {
+            $('#date').inputmask('99/99/9999')
+        });
     </script>
     <script>
         $(document).ready(function () {
@@ -121,4 +137,5 @@
         //    });
         //})
     </script>
+
 }

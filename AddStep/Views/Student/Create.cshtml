@@ -26,7 +26,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label asp-for="Passport" class="form-label">Passport</label>
-                <input asp-for="Passport" class="form-control" placeholder="Passport" />
+                <input asp-for="Passport" class="form-control" id="passport" placeholder="AA-1234567" />
             </div>
             <div class="form-group col-md-2">
                 <label asp-for="Gender" class="form-label">Gender</label>
@@ -51,11 +51,11 @@
             </div>
             <div class="form-group col-md-3">
                 <label asp-for="MobileNamber" class="form-label">MobileNamber</label>
-                <input asp-for="MobileNamber" class="form-control" placeholder="MobileNamber" />
+                <input asp-for="MobileNamber" class="form-control" id="phone" placeholder="(xx)-xxx-xxxx" />
             </div>
             <div class="form-group col-md-2">
                 <label asp-for="Cours" class="form-label">Cours</label>
-                <input asp-for="Cours" class="form-control" placeholder="exsample 1.." />
+                <input asp-for="Cours" class="form-control" type="text" id="number" placeholder="exsample 1.." />
             </div>
             <div class="form-group col-md-2">
                 <label asp-for="Contract" class="form-label">Contract</label>
@@ -137,6 +137,18 @@
 </form>
 @section scripts {
     <script type="text/javascript">
+        $('#number').inputmask({
+            alias: 'numeric',
+            allowMinus: false,
+            digits: 1,
+            max: 4
+        });
+        $(document).ready(function () {
+            $('#passport').inputmask({ mask: "AA-9999999" })
+        });
+        $(document).ready(function () {
+            $('#phone').inputmask('(99)-999-9999')
+        });
         $(function () {
             $("#regionselect").on('change', function () {
                 $.ajax({
