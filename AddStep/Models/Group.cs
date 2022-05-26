@@ -10,6 +10,8 @@ namespace AddStep.Models
     public class Group
     {
         [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         [MaxLength(40)]

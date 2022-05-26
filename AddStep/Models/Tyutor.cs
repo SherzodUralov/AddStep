@@ -10,6 +10,9 @@ namespace AddStep.Models
 {
     public class Tyutor
     {
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TyutorId { get; set; }
         [Required]
         [MaxLength(30)]
