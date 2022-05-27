@@ -73,6 +73,8 @@ namespace AddStep.Models.Repository
             return dbContext.Districts.Where(l => l.RegionId.Equals(regionid)).ToList();
         }
 
+
+
         public IList<Faculty> GetFaculties()
         {
             return dbContext.Faculties.ToList();
