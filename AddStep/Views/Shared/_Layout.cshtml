@@ -337,52 +337,23 @@
 
                     </ul>
                 </nav>
+                <!-- End of Topbar -->
 
-                
-
-                    <!-- End of Topbar -->
-                    @*<header>
-                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                    <div class="container">
-                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AddStep</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                            <ul class="navbar-nav flex-grow-1">
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Student" asp-action="Index">Student</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Tyutor" asp-action="Index">Tyutor</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Rolee" asp-action="Index">Rolee</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </header>*@
                     <div class="container-fluid">
                         <main role="main" class="pb-3">
                             @RenderBody()
                         </main>
                     </div>
-                    @*<footer class="border-top footer text-muted">
-                <div class="container">
-                    &copy; 2022 - AddStep - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </div>dcd
+                    
 
 
-            </footer>
+            
             <script src="~/lib/jquery/dist/jquery.min.js"></script>
             <script src="~/lib/jquery/dist/JqureyInputmask.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>
-            @await RenderSectionAsync("Scripts", required: false)*@
-
+            @await RenderSectionAsync("Scripts", required: false)
+                
 
                 </div>
                 <!-- End of Page Wrapper -->
